@@ -1,0 +1,7 @@
+ 1993  mkdir -p ~/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
+ 1994  cp sorint-1.0.tar.gz ~/rpmbuild/SOURCES/
+ 1995  tar -czf sorint-1.0.tar.gz sorint-1.0
+ 1996  cp sorint-1.0.tar.gz ~/rpmbuild/SOURCES/
+ 1997  cp sorint.spec ~/rpmbuild/SPECS/
+ 1998  rpmbuild -ba ~/rpmbuild/SPECS/sorint.spec
+
