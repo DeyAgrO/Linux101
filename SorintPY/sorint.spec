@@ -5,7 +5,7 @@ Summary:        Sorint Lab Project by Ibraheem IBRAHEEM & GPT 4
 Group:          Sorint France
 
 License:        GPLv2+
-URL:            https://github.com/DeyAgrO/lab
+URL:            https://github.com/DeyAgrO/Linux101
 Source0:        %{name}-%{version}.tar.gz
 
 BuildArch:      noarch
