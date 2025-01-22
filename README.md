@@ -64,8 +64,8 @@ sorint grade course101
 INFO:
 
 - username : sorint / password : sorint
-- to start course you should enter the command ` sorint start course101`
-- After you finish the exercise you should enter the command `sorint grade course101`
+- to start course you should enter the command ` sorint start course102`
+- After you finish the exercise you should enter the command `sorint grade course102`
 - If all the question has been answered correctly then it should output finished.
 
 ### Exercise 102
@@ -106,8 +106,8 @@ INFO
 - username : sorint / password : sorint
 
 
-- to start course you should enter the command ` sorint start course101`
-- After you finish the exercise you should enter the command `sorint grade course101`
+- to start course you should enter the command ` sorint start course103`
+- After you finish the exercise you should enter the command `sorint grade course103`
 - If all the question has been answered correctly then it should output finished green.
 
 ### Exercise 103
