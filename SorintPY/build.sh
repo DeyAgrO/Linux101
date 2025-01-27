@@ -2,7 +2,7 @@
 
 # Environement Variables
 VERSION=1.5
-FILE_PATH="Builds/sorint-$VERSION"
+FILE_PATH="RPM/sorint-$VERSION"
 REMOTE_HOST=192.168.122.122
 REMOTE_USER="user"
 
