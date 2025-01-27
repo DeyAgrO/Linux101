@@ -27,7 +27,7 @@ rsync /tmp/sshenv $REMOTE_USER@$REMOTE_HOST:~/.ssh/environment
 # Delete Old Files From Remote Host
 ssh -T $REMOTE_USER@$REMOTE_HOST << 'EOF' | grep -v 'Activate the web console with: systemctl enable --now cockpit.socket'
 rm -rf /home/$USER/sorint* 2> /dev/null
-sudo rpm -e sorint 2> /dev/null
+echo "user" | sudo -S rpm -e sorint 2> /dev/null
 echo "##################################################\nSorint File and Package has beed deleted\n##################################################\n"
 EOF
 
@@ -51,23 +51,23 @@ rsync ~/rpmbuild/RPMS/noarch/sorint-$VERSION-el9.noarch.rpm $REMOTE_USER@$REMOTE
 
 # Install new RPM on Remote Host
 ssh -T $REMOTE_USER@$REMOTE_HOST << 'EOF' | grep -v 'Activate the web console with: systemctl enable --now cockpit.socket'
-if sudo rpm -i /home/$USER/sorint*; then echo "#######  PACKAGE INSTALLED SUCCESSFULLY  #######"; fi
-sudo rpm -qi sorint | head -n 5 2> /dev/null
+if echo "user" | sudo -S rpm -i /home/$USER/sorint*; then echo "#######  PACKAGE INSTALLED SUCCESSFULLY  #######"; fi
+echo "user" | sudo -S rpm -qi sorint | head -n 5 2> /dev/null
 echo "######### END OF SORINT PACKAGE CHECK ##########"
 EOF
 
 
 ssh -T $REMOTE_USER@$REMOTE_HOST << 'EOF' | grep -v 'Activate the web console with: systemctl enable --now cockpit.socket'
 echo "###########  BEGIN SORINT COMMAND LOG  ###########"
-echo "\n------  Course 101 Errors  -------"
-sorint start course101 | grep -e Error -e module
+# echo "\n------  Course 101 Errors  -------"
+# sorint start course101 | grep -e Error -e module
 echo "\n------  Course 102 Start Errors  -------"
-sorint start course102 | grep -e Error -e module
-echo "\n------  Course 103 Errors  -------"
-sorint start course103 | grep -e Error -e module
-sorint grade course103 | grep -e Error -e module
-echo "\n------  Course 104 Errors  -------"
-sudo sorint start course104 | grep -e Error -e module
-sudo sorint grade course104 | grep -e Error -e module
+sorint start course102
+# echo "\n------  Course 103 Errors  -------"
+# sorint start course103 | grep -e Error -e module
+# sorint grade course103 | grep -e Error -e module
+# echo "\n------  Course 104 Errors  -------"
+# sudo sorint start course104 | grep -e Error -e module
+# sudo sorint grade course104 | grep -e Error -e module
 echo "######### END OF SORINT COMMAND LOG ##########"
 EOF

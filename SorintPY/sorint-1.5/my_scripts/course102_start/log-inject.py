@@ -4,9 +4,12 @@ import random
 import socket
 import subprocess
 
-log_file = '/var/log/secure'
-user_password = 'sorint'
+# Import variables from config.py
+from config import SUDO_PASSWORD
+#### END ID
 
+log_file = '/var/log/secure'
+SUDO_PASS = SUDO_PASSWORD
 # Generate a random PID
 def generate_pid():
     return random.randint(1000, 99999)
@@ -34,7 +37,7 @@ def execute_with_privileges():
     try:
         script_path = os.path.abspath(__file__)
         proc = subprocess.Popen(['sudo', 'python3', script_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        stdout, stderr = proc.communicate(input=user_password.encode(), timeout=5)  # Provide the password to sudo
+        stdout, stderr = proc.communicate(input=SUDO_PASS.encode(), timeout=5)  # Provide the password to sudo
         if proc.returncode != 0:
             print(f"\033[91mError writing log entry: {stderr.decode().strip()}\033[0m")
         else:

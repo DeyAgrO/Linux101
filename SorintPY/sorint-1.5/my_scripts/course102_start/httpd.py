@@ -1,13 +1,19 @@
 import subprocess
 
-# Define the sudo password
-SUDO_PASSWORD = "sorint"
+#### Begin ID=10492
+# from path_setup import setup_path
+# setup_path()
+
+# Import variables from config.py
+from config import SUDO_PASSWORD
+#### END ID
 
 # ANSI color codes for messages
 COLOR_RED = "\033[91m"
 COLOR_GREEN = "\033[92m"
 COLOR_YELLOW = "\033[93m"
 COLOR_RESET = "\033[0m"
+
 
 # Function to run a command with sudo
 def run_with_sudo(command):
@@ -22,12 +28,14 @@ def print_message(color, message):
 
 # Main function
 def main():
+    print(SUDO_PASSWORD)
     # Check if httpd is already installed
     returncode, stdout, stderr = run_with_sudo('dnf list installed httpd')
     if returncode == 0:
         print_message(COLOR_YELLOW, "httpd package is already installed.")
     else:
         # Install httpd package
+        print(SUDO_PASSWORD)
         print("Installing httpd package...")
         returncode, stdout, stderr = run_with_sudo('dnf -y install httpd')
         if returncode == 0:
@@ -65,4 +73,5 @@ def main():
         print_message(COLOR_RED, f"Error: httpd service status is not running properly: {stderr}")
 
 if __name__ == "__main__":
+    print(SUDO_PASSWORD)
     main()
