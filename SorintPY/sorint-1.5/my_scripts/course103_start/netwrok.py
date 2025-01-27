@@ -1,7 +1,5 @@
 import subprocess
-
-# Import variables from config.py ID=10492
-from config import SUDO_PASSWORD
+from Modules.config import SUDO_PASSWORD # ID=10492
 
 
 def print_colored(text, color_code):

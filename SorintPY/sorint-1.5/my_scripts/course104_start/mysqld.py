@@ -1,5 +1,5 @@
 import subprocess
-from config import SUDO_PASSWORD # ID=10492
+from Modules.config import SUDO_PASSWORD # ID=10492
 import Modules.my_defs
 
 
@@ -9,10 +9,6 @@ def create_log_directory(password):
     Modules.my_defs.run_command("mkdir -p /var/log/mysql", password)
     Modules.my_defs.run_command("chown mysql:mysql /var/log/mysql", password)
     Modules.my_defs.run_command("chmod 755 /var/log/mysql", password)
-
-import subprocess
-from config import SUDO_PASSWORD # ID=10492
-import Modules.my_defs
 
 def main():
     rpm_pkg = "mysql"  # Package name

@@ -1,8 +1,6 @@
 import subprocess
 import re
-
-# Import variables from config.py ID=10492
-from config import SUDO_PASSWORD
+from Modules.config import SUDO_PASSWORD # ID=10492
 
 def run_sudo_command(command, password):
     """Run a command with sudo and return the output."""

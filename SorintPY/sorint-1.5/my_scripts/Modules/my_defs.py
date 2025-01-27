@@ -1,5 +1,5 @@
 import subprocess
-from config import SUDO_PASSWORD # ID=10492
+from Modules.config import SUDO_PASSWORD # ID=10492
 
 # ANSI color codes for messages
 COLOR_RED = "\033[91m"

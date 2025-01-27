@@ -1,5 +1,5 @@
 import subprocess
-from config import SUDO_PASSWORD # ID=10492
+from Modules.config import SUDO_PASSWORD # ID=10492
 import Modules.my_defs
 
 def install_nginx(password):
