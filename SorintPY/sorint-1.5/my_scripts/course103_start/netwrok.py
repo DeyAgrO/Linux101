@@ -1,5 +1,9 @@
 import subprocess
 
+# Import variables from config.py ID=10492
+from config import SUDO_PASSWORD
+
+
 def print_colored(text, color_code):
     """Print text in the specified color."""
     print(f"\033[{color_code}m{text}\033[0m")
@@ -29,9 +33,6 @@ def restart_network_manager(password):
     return True
 
 def main():
-    # User credentials (change these as needed)
-    username = 'sorint'
-    password = 'sorint'
 
     # Network interface and new connection name
     interface = 'eth1'
@@ -39,7 +40,7 @@ def main():
 
     # Check if the new connection already exists
     check_connection_command = f"nmcli connection show {new_connection}"
-    stdout, stderr = run_command(check_connection_command, password)
+    stdout, stderr = run_command(check_connection_command, SUDO_PASSWORD)
     if stdout:
         print_colored(f"Connection {new_connection} already exists. No changes will be made.", "33")  # Yellow
         return
@@ -49,15 +50,15 @@ def main():
 
     # Delete all existing connections for the interface
     list_connections_command = f"nmcli -t -f NAME,DEVICE connection show"
-    connections, error = run_command(list_connections_command, password)
+    connections, error = run_command(list_connections_command, SUDO_PASSWORD)
     if error:
         if "Warning: nmcli" in error and "NetworkManager" in error and "versions don't match" in error:
             print_colored(f"Version mismatch detected. Attempting to restart NetworkManager...", "33")  # Yellow
-            if not restart_network_manager(password):
+            if not restart_network_manager(SUDO_PASSWORD):
                 print_colored("Failed to resolve version mismatch. Exiting.", "31")  # Red
                 return
             # Re-run the command after restarting NetworkManager
-            connections, error = run_command(list_connections_command, password)
+            connections, error = run_command(list_connections_command, SUDO_PASSWORD)
             if error:
                 print_colored(f"Error listing connections: {error}", "31")  # Red
                 return
@@ -71,7 +72,7 @@ def main():
                 name, device = line.split(':')
                 if device == interface:
                     delete_command = f"nmcli connection delete \"{name}\""
-                    _, error = run_command(delete_command, password)
+                    _, error = run_command(delete_command, SUDO_PASSWORD)
                     if error:
                         print_colored(f"Error deleting connection {name}: {error}", "31")  # Red
                         return
@@ -82,20 +83,20 @@ def main():
         f"ipv4.method manual ipv4.addresses 10.10.10.10/24 ipv4.gateway 10.10.10.10 "
         f"ipv4.dns '10.10.10.10' connection.autoconnect yes"
     )
-    _, error = run_command(create_command, password)
+    _, error = run_command(create_command, SUDO_PASSWORD)
     if error:
         print_colored(f"Error creating connection {new_connection}: {error}", "31")  # Red
         return
 
     # Set the new connection as primary and bring it up
     modify_command = f"nmcli connection modify {new_connection} connection.autoconnect-priority 1"
-    _, error = run_command(modify_command, password)
+    _, error = run_command(modify_command, SUDO_PASSWORD)
     if error:
         print_colored(f"Error modifying connection {new_connection}: {error}", "31")  # Red
         return
 
     up_command = f"nmcli connection up {new_connection}"
-    _, error = run_command(up_command, password)
+    _, error = run_command(up_command, SUDO_PASSWORD)
     if error:
         print_colored(f"Error bringing up connection {new_connection}: {error}", "31")  # Red
         return

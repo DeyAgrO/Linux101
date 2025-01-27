@@ -2,6 +2,9 @@ import subprocess
 import os
 import re
 
+# Import variables from config.py ID=10492
+from config import SUDO_PASSWORD
+
 def print_colored(text, color_code):
     """Print text in the specified color."""
     print(f"\033[{color_code}m{text}\033[0m")
@@ -55,8 +58,7 @@ def check_sudoers_rule(password):
     print_colored("The sudoers rule for group 'sorint' is not set.", "31")  # Red
 
 def grade():
-    password = 'sorint'  # Sudo password
-    check_sudoers_rule(password)
+    check_sudoers_rule(SUDO_PASSWORD)
 
 if __name__ == "__main__":
     grade()

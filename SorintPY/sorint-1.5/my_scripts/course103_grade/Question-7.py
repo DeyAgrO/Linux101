@@ -1,9 +1,12 @@
 import os
 import subprocess
 
-def run_sudo_command(command, sudo_password):
+# Import variables from config.py ID=10492
+from config import SUDO_PASSWORD
+
+def run_sudo_command(command, password):
     """Run a command with sudo and return the output."""
-    full_command = f'echo {sudo_password} | sudo -S {command}'
+    full_command = f'echo {password} | sudo -S {command}'
     try:
         result = subprocess.run(full_command, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         return result.stdout.strip(), None
@@ -15,7 +18,6 @@ def print_colored(text, color_code):
     print(f"\033[{color_code}m{text}\033[0m")
 
 def grade():
-    sudo_password = "sorint"  # Replace with your actual sudo password or securely prompt for it
     folder_path = "/external"
     device = "/dev/sdb"
     user = "sorint"
@@ -28,7 +30,7 @@ def grade():
 
     # Step 2: Check if the device /dev/sdb is mounted on /external
     command = f'mount | grep "on {folder_path} type"'
-    output, error = run_sudo_command(command, sudo_password)
+    output, error = run_sudo_command(command, SUDO_PASSWORD)
     
     if error:
         print_colored(f"Error checking mount status: {error}", "31")  # Red
@@ -49,7 +51,7 @@ def grade():
     gid = stat_info.st_gid
     
     command = f'id -u {user}'
-    output, error = run_sudo_command(command, sudo_password)
+    output, error = run_sudo_command(command, SUDO_PASSWORD)
     
     if error:
         print_colored(f"Error retrieving UID for user {user}: {error}", "31")  # Red
@@ -60,7 +62,7 @@ def grade():
         return False
     
     command = f'id -g {group}'
-    output, error = run_sudo_command(command, sudo_password)
+    output, error = run_sudo_command(command, SUDO_PASSWORD)
     
     if error:
         print_colored(f"Error retrieving GID for group {group}: {error}", "31")  # Red

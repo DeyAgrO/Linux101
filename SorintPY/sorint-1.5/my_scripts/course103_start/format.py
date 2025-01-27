@@ -1,9 +1,12 @@
 import subprocess
 import os
 
-def run_sudo_command(command, sudo_password):
+# Import variables from config.py ID=10492
+from config import SUDO_PASSWORD
+
+def run_sudo_command(command, password):
     """Run a command with sudo and return the output."""
-    full_command = f'echo {sudo_password} | sudo -S {command}'
+    full_command = f'echo {password} | sudo -S {command}'
     
     try:
         result = subprocess.run(full_command, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -15,10 +18,10 @@ def print_colored(text, color_code):
     """Print text in the specified color."""
     print(f"\033[{color_code}m{text}\033[0m")
 
-def check_filesystem(disk, sudo_password):
+def check_filesystem(disk, password):
     """Check if the disk has a filesystem."""
     command = f'blkid {disk}'
-    output, error = run_sudo_command(command, sudo_password)
+    output, error = run_sudo_command(command, password)
     
     if error:
         if "exit status 2" in error:  # blkid returns exit status 2 if the disk has no recognizable filesystem
@@ -29,7 +32,6 @@ def check_filesystem(disk, sudo_password):
     return True
 
 def main():
-    sudo_password = "sorint"  # Replace with your actual sudo password or securely prompt for it
     disk = "/dev/sdb"
     
     # Check if the disk exists
@@ -38,7 +40,7 @@ def main():
         return False
 
     # Check if the disk has a filesystem
-    has_filesystem = check_filesystem(disk, sudo_password)
+    has_filesystem = check_filesystem(disk, SUDO_PASSWORD)
     
     if has_filesystem is None:
         return False
@@ -49,7 +51,7 @@ def main():
     
     # Step 1: Unmount the disk if it's mounted
     command = f'umount {disk}'
-    output, error = run_sudo_command(command, sudo_password)
+    output, error = run_sudo_command(command, SUDO_PASSWORD)
     
     if error and "not mounted" not in error:
         print_colored(f"Error unmounting {disk}: {error}", "31")  # Red
@@ -57,7 +59,7 @@ def main():
     
     # Step 2: Create the ext4 filesystem
     command = f'mkfs.ext4 {disk}'
-    output, error = run_sudo_command(command, sudo_password)
+    output, error = run_sudo_command(command, SUDO_PASSWORD)
     
     if error:
         print_colored(f"Error formatting {disk} with ext4: {error}", "31")  # Red

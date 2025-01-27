@@ -1,9 +1,12 @@
 import subprocess
 import re
 
-def run_sudo_command(command, sudo_password):
+# Import variables from config.py ID=10492
+from config import SUDO_PASSWORD
+
+def run_sudo_command(command, password):
     """Run a command with sudo and return the output."""
-    full_command = f'echo {sudo_password} | sudo -S {command}'
+    full_command = f'echo {password} | sudo -S {command}'
     try:
         result = subprocess.run(full_command, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         return result.stdout.strip(), None
@@ -15,12 +18,11 @@ def print_colored(text, color_code):
     print(f"\033[{color_code}m{text}\033[0m")
 
 def grade():
-    sudo_password = "sorint"
     repo_file = '/etc/yum.repos.d/librewolf.repo'
     
     # Check if the repo file exists with sudo privileges
     command = f'ls {repo_file}'
-    output, error = run_sudo_command(command, sudo_password)
+    output, error = run_sudo_command(command, SUDO_PASSWORD)
     
     if error:
         print_colored("The librewolf.repo file does not exist.", "31")  # Red
@@ -28,7 +30,7 @@ def grade():
 
     # Read the repo file with sudo privileges
     command = f'cat {repo_file}'
-    output, error = run_sudo_command(command, sudo_password)
+    output, error = run_sudo_command(command, SUDO_PASSWORD)
     
     if error:
         print_colored(f"Error reading the librewolf.repo file: {error}", "31")  # Red

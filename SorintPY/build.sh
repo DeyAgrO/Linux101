@@ -61,15 +61,21 @@ EOF
 
 ssh -T $REMOTE_USER@$REMOTE_HOST << 'EOF' | grep -v 'Activate the web console with: systemctl enable --now cockpit.socket'
 echo "###########  BEGIN SORINT COMMAND LOG  ###########"
-# echo "\n------  Course 101 Errors  -------"
-# sorint start course101 | grep -e Error -e module
-echo "\n------  Course 102 Start Errors  -------"
-sorint start course102
-# echo "\n------  Course 103 Errors  -------"
-# sorint start course103 | grep -e Error -e module
-# sorint grade course103 | grep -e Error -e module
-# echo "\n------  Course 104 Errors  -------"
-# sudo sorint start course104 | grep -e Error -e module
-# sudo sorint grade course104 | grep -e Error -e module
+# echo "\n\n------  Course 101 start  -------"
+# sorint start course101
+# echo "\n\n------  Course 101 grade  -------"
+# sorint grade course101
+# echo "\n\n------  Course 102 Start  -------"
+# sorint start course102
+# echo "\n\n------  Course 102 grade  -------"
+# yes 'N' |sorint grade course102
+# echo "\n\n------  Course 103 start  -------"
+# sorint start course103
+# echo "\n\n------  Course 103 grade  -------"
+# sorint grade course103
+echo "\n\n------  Course 104 start  -------"
+sorint start course104
+echo "\n\n------  Course 104 grade  -------"
+sorint grade course104
 echo "######### END OF SORINT COMMAND LOG ##########"
 EOF
