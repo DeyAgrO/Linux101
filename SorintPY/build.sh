@@ -5,6 +5,7 @@ VERSION=1.5
 FILE_PATH="RPM/sorint-$VERSION"
 REMOTE_HOST=192.168.122.122
 REMOTE_USER="user"
+REMOTE_USER_PASS="user"
 
 # Make Sure Packages Directory Exist
 mkdir -p $FILE_PATH
@@ -22,12 +23,13 @@ rm $FILE_PATH/sorint-$VERSION.tar.gz 2> /dev/null
 # Creating Remote SSH ENV
 echo "REMOTE_USER=$REMOTE_USER" > /tmp/sshenv
 echo "VERSION=$VERSION" >> /tmp/sshenv
+echo "REMOTE_USER_PASS=$REMOTE_USER_PASS" >> /tmp/sshenv
 rsync /tmp/sshenv $REMOTE_USER@$REMOTE_HOST:~/.ssh/environment
 
 # Delete Old Files From Remote Host
 ssh -T $REMOTE_USER@$REMOTE_HOST << 'EOF' | grep -v 'Activate the web console with: systemctl enable --now cockpit.socket'
 rm -rf /home/$USER/sorint* 2> /dev/null
-echo "user" | sudo -S rpm -e sorint 2> /dev/null
+echo $REMOTE_USER_PASS | sudo -S rpm -e sorint 2> /dev/null
 echo "##################################################\nSorint File and Package has beed deleted\n##################################################\n"
 EOF
 
@@ -51,8 +53,8 @@ rsync ~/rpmbuild/RPMS/noarch/sorint-$VERSION-el9.noarch.rpm $REMOTE_USER@$REMOTE
 
 # Install new RPM on Remote Host
 ssh -T $REMOTE_USER@$REMOTE_HOST << 'EOF' | grep -v 'Activate the web console with: systemctl enable --now cockpit.socket'
-if echo "user" | sudo -S rpm -i /home/$USER/sorint*; then echo "#######  PACKAGE INSTALLED SUCCESSFULLY  #######"; fi
-echo "user" | sudo -S rpm -qi sorint | head -n 5 2> /dev/null
+if echo $REMOTE_USER_PASS | sudo -S rpm -i /home/$USER/sorint*; then echo "#######  PACKAGE INSTALLED SUCCESSFULLY  #######"; fi
+echo $REMOTE_USER_PASS | sudo -S rpm -qi sorint | head -n 5 2> /dev/null
 echo "######### END OF SORINT PACKAGE CHECK ##########"
 EOF
 

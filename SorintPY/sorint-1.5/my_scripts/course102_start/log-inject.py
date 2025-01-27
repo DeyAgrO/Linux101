@@ -6,17 +6,20 @@ import subprocess
 
 # Import variables from config.py
 from config import SUDO_PASSWORD
-#### END ID
 
-log_file = '/var/log/secure'
-SUDO_PASS = SUDO_PASSWORD
+# Path to the log file
+LOG_FILE = '/var/log/secure'
+
+
 # Generate a random PID
 def generate_pid():
     return random.randint(1000, 99999)
 
+
 # Get the hostname before the first dot
 def get_hostname():
     return socket.gethostname().split('.')[0]
+
 
 # Generate a log entry
 def generate_log_entry():
@@ -27,36 +30,40 @@ def generate_log_entry():
     myhost = get_hostname()
     return f"{now.strftime('%b %d %H:%M:%S')} {myhost} sshd[{pid}]: Failed password for invalid user {username} from {ip_address} port 12345 ssh2"
 
-# Write the log entry to the file
-def write_log_entry():
-    with open(log_file, 'a') as f:
-        f.write(generate_log_entry() + '\n')
 
-# Function to execute the script with elevated privileges
-def execute_with_privileges():
+# Write the log entry to the file with elevated privileges
+def write_log_entry_with_privileges():
+    log_entry = generate_log_entry()
     try:
-        script_path = os.path.abspath(__file__)
-        proc = subprocess.Popen(['sudo', 'python3', script_path], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        stdout, stderr = proc.communicate(input=SUDO_PASS.encode(), timeout=5)  # Provide the password to sudo
-        if proc.returncode != 0:
-            print(f"\033[91mError writing log entry: {stderr.decode().strip()}\033[0m")
-        else:
+        # Command to append the log entry to the log file
+        command = f"echo '{log_entry}' | tee -a {LOG_FILE}"
+        
+        # Use subprocess to run the command with sudo
+        proc = subprocess.Popen(
+            ['sudo', '-S', 'bash', '-c', command],  # Use 'bash -c' to run the full command
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True  # Enable text mode for strings instead of bytes
+        )
+        # Provide the sudo password to the subprocess
+        stdout, stderr = proc.communicate(input=f"{SUDO_PASSWORD}\n")
+
+        if proc.returncode == 0:
             print("\033[92mLog entry written successfully.\033[0m")
-    except subprocess.CalledProcessError as e:
-        print(f"\033[91mError writing log entry: {e}\033[0m")
+        else:
+            print(f"\033[91m[ERROR] Failed to write log entry: {stderr.strip()}\033[0m")
     except Exception as e:
-        print(f"Error: {e}")
+        print(f"\033[91m[ERROR] Unexpected error while writing log entry: {e}\033[0m")
+
 
 # Main function
 def main():
-    if os.geteuid() != 0:
-        execute_with_privileges()
-    else:
-        try:
-            write_log_entry()
-            print("Log entry written successfully.")
-        except Exception as e:
-            print(f"Error writing log entry: {e}")
+    try:
+        write_log_entry_with_privileges()
+    except Exception as e:
+        print(f"\033[91m[ERROR] Failed to write log entry: {e}\033[0m")
+
 
 if __name__ == '__main__':
     main()
