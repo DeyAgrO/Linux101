@@ -1,5 +1,5 @@
 Name:           sorint
-Version:        1.4
+Version:        1.5
 Release:        el9
 Summary:        Sorint Lab Project by Ibraheem IBRAHEEM & GPT 4
 Group:          Sorint France
@@ -35,5 +35,5 @@ cp -r my_scripts %{buildroot}/usr/lib/sorint/
 /usr/lib/sorint/my_scripts
 
 %changelog
-* Wed Jan 22 2025 Ibraheem IBRAHEEM <iibraheem@sorint.com> - 1.4
+* Wed Jan 22 2025 Ibraheem IBRAHEEM <iibraheem@sorint.com> - 1.5
 - Initial package

@@ -28,6 +28,7 @@ rsync /tmp/sshenv $REMOTE_USER@$REMOTE_HOST:~/.ssh/environment
 ssh -T $REMOTE_USER@$REMOTE_HOST << 'EOF' | grep -v 'Activate the web console with: systemctl enable --now cockpit.socket'
 rm -rf /home/$USER/sorint* 2> /dev/null
 sudo rpm -e sorint 2> /dev/null
+echo "##################################################\nSorint File and Package has beed deleted\n##################################################\n"
 EOF
 
 # Create tar archive

@@ -1,20 +1,107 @@
 Building target platforms: noarch
 Building for target noarch
 + umask 022
-+ cd /home/user/rpmbuild/BUILD/sorint-1.4-build
-+ test -d /home/user/rpmbuild/BUILD/sorint-1.4-build
-+ /usr/bin/chmod -Rf a+rX,u+w,g-w,o-w /home/user/rpmbuild/BUILD/sorint-1.4-build
-+ /usr/bin/rm -rf /home/user/rpmbuild/BUILD/sorint-1.4-build
-+ /usr/bin/mkdir -p /home/user/rpmbuild/BUILD/sorint-1.4-build
-+ /usr/bin/mkdir -p /home/user/rpmbuild/BUILD/sorint-1.4-build/SPECPARTS
++ cd /home/user/rpmbuild/BUILD/sorint-1.5-build
++ test -d /home/user/rpmbuild/BUILD/sorint-1.5-build
++ /usr/bin/chmod -Rf a+rX,u+w,g-w,o-w /home/user/rpmbuild/BUILD/sorint-1.5-build
++ /usr/bin/rm -rf /home/user/rpmbuild/BUILD/sorint-1.5-build
++ /usr/bin/mkdir -p /home/user/rpmbuild/BUILD/sorint-1.5-build
++ /usr/bin/mkdir -p /home/user/rpmbuild/BUILD/sorint-1.5-build/SPECPARTS
 + RPM_EC=0
 ++ jobs -p
 + exit 0
 + umask 022
-+ cd /home/user/rpmbuild/BUILD/sorint-1.4-build
-+ cd /home/user/rpmbuild/BUILD/sorint-1.4-build
-+ rm -rf sorint-1.4
-+ /usr/lib/rpm/rpmuncompress -x /home/user/rpmbuild/SOURCES/sorint-1.4.tar.gz
-error: File /home/user/rpmbuild/SOURCES/sorint-1.4.tar.gz: No such file or directory
-error: Bad exit status from /var/tmp/rpm-tmp.0YdsCs (%prep)
-    Bad exit status from /var/tmp/rpm-tmp.0YdsCs (%prep)
++ cd /home/user/rpmbuild/BUILD/sorint-1.5-build
++ cd /home/user/rpmbuild/BUILD/sorint-1.5-build
++ rm -rf sorint-1.5
++ /usr/lib/rpm/rpmuncompress -x /home/user/rpmbuild/SOURCES/sorint-1.5.tar.gz
++ STATUS=0
++ '[' 0 -ne 0 ']'
++ cd sorint-1.5
++ /usr/bin/chmod -Rf a+rX,u+w,g-w,o-w .
++ RPM_EC=0
+++ jobs -p
++ exit 0
++ umask 022
++ cd /home/user/rpmbuild/BUILD/sorint-1.5-build
++ CFLAGS='-O2 -flto=auto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64 -march=x86-64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -mtls-dialect=gnu2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer '
++ export CFLAGS
++ CXXFLAGS='-O2 -flto=auto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64 -march=x86-64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -mtls-dialect=gnu2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer '
++ export CXXFLAGS
++ FFLAGS='-O2 -flto=auto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64 -march=x86-64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -mtls-dialect=gnu2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -I/usr/lib/gfortran/modules '
++ export FFLAGS
++ FCFLAGS='-O2 -flto=auto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64 -march=x86-64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -mtls-dialect=gnu2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -I/usr/lib/gfortran/modules '
++ export FCFLAGS
++ VALAFLAGS=-g
++ export VALAFLAGS
++ RUSTFLAGS='-Copt-level=3 -Cdebuginfo=2 -Ccodegen-units=1 -Cstrip=none -Cforce-frame-pointers=yes --cap-lints=warn'
++ export RUSTFLAGS
++ LDFLAGS='-Wl,-z,relro -Wl,--as-needed   -Wl,-z,now -specs=/usr/lib/rpm/redhat/redhat-hardened-ld -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -Wl,--build-id=sha1  '
++ export LDFLAGS
++ LT_SYS_LIBRARY_PATH=/usr/lib:
++ export LT_SYS_LIBRARY_PATH
++ CC=gcc
++ export CC
++ CXX=g++
++ export CXX
++ cd sorint-1.5
++ RPM_EC=0
+++ jobs -p
++ exit 0
++ umask 022
++ cd /home/user/rpmbuild/BUILD/sorint-1.5-build
++ '[' /home/user/rpmbuild/BUILD/sorint-1.5-build/BUILDROOT '!=' / ']'
++ rm -rf /home/user/rpmbuild/BUILD/sorint-1.5-build/BUILDROOT
+++ dirname /home/user/rpmbuild/BUILD/sorint-1.5-build/BUILDROOT
++ mkdir -p /home/user/rpmbuild/BUILD/sorint-1.5-build
++ mkdir /home/user/rpmbuild/BUILD/sorint-1.5-build/BUILDROOT
++ CFLAGS='-O2 -flto=auto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64 -march=x86-64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -mtls-dialect=gnu2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer '
++ export CFLAGS
++ CXXFLAGS='-O2 -flto=auto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64 -march=x86-64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -mtls-dialect=gnu2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer '
++ export CXXFLAGS
++ FFLAGS='-O2 -flto=auto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64 -march=x86-64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -mtls-dialect=gnu2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -I/usr/lib/gfortran/modules '
++ export FFLAGS
++ FCFLAGS='-O2 -flto=auto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64 -march=x86-64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -mtls-dialect=gnu2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -I/usr/lib/gfortran/modules '
++ export FCFLAGS
++ VALAFLAGS=-g
++ export VALAFLAGS
++ RUSTFLAGS='-Copt-level=3 -Cdebuginfo=2 -Ccodegen-units=1 -Cstrip=none -Cforce-frame-pointers=yes --cap-lints=warn'
++ export RUSTFLAGS
++ LDFLAGS='-Wl,-z,relro -Wl,--as-needed   -Wl,-z,now -specs=/usr/lib/rpm/redhat/redhat-hardened-ld -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -Wl,--build-id=sha1  '
++ export LDFLAGS
++ LT_SYS_LIBRARY_PATH=/usr/lib:
++ export LT_SYS_LIBRARY_PATH
++ CC=gcc
++ export CC
++ CXX=g++
++ export CXX
++ cd sorint-1.5
++ install -d /home/user/rpmbuild/BUILD/sorint-1.5-build/BUILDROOT/usr/bin
++ install -m 755 sorint.py /home/user/rpmbuild/BUILD/sorint-1.5-build/BUILDROOT/usr/bin/sorint
++ install -d /home/user/rpmbuild/BUILD/sorint-1.5-build/BUILDROOT/usr/lib/sorint
++ cp -r my_scripts /home/user/rpmbuild/BUILD/sorint-1.5-build/BUILDROOT/usr/lib/sorint/
++ '[' '%{buildarch}' = noarch ']'
++ QA_CHECK_RPATHS=1
++ case "${QA_CHECK_RPATHS:-}" in
++ /usr/lib/rpm/check-rpaths
++ /usr/lib/rpm/check-buildroot
++ /usr/lib/rpm/redhat/brp-ldconfig
++ /usr/lib/rpm/brp-compress
++ /usr/lib/rpm/brp-strip /usr/bin/strip
++ /usr/lib/rpm/brp-strip-comment-note /usr/bin/strip /usr/bin/objdump
++ /usr/lib/rpm/redhat/brp-strip-lto /usr/bin/strip
++ /usr/lib/rpm/brp-strip-static-archive /usr/bin/strip
++ /usr/lib/rpm/check-rpaths
++ /usr/lib/rpm/redhat/brp-mangle-shebangs
++ /usr/lib/rpm/brp-remove-la-files
++ env /usr/lib/rpm/redhat/brp-python-bytecompile '' 1 0 -j8
++ /usr/lib/rpm/redhat/brp-python-hardlink
++ /usr/bin/add-determinism --brp -j8 /home/user/rpmbuild/BUILD/sorint-1.5-build/BUILDROOT
++ umask 022
++ cd /home/user/rpmbuild/BUILD/sorint-1.5-build
++ test -d /home/user/rpmbuild/BUILD/sorint-1.5-build
++ /usr/bin/chmod -Rf a+rX,u+w,g-w,o-w /home/user/rpmbuild/BUILD/sorint-1.5-build
++ rm -rf /home/user/rpmbuild/BUILD/sorint-1.5-build
++ RPM_EC=0
+++ jobs -p
++ exit 0
