@@ -17,7 +17,7 @@ rpmdev-setuptree
 cp $FILE_PATH/$VERSION-sorint.spec /home/$USER/rpmbuild/SPECS/sorint.spec
 
 # delete old tar file
-rm $FILE_PATH/sorint-$VERSION.tar.gz
+rm $FILE_PATH/sorint-$VERSION.tar.gz 2> /dev/null
 
 # Creating Remote SSH ENV
 echo "REMOTE_USER=$REMOTE_USER" > /tmp/sshenv

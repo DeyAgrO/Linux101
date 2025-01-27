@@ -1,1 +1,20 @@
-error: failed to stat /home/user/rpmbuild/SPECS/sorint.spec: No such file or directory
+Building target platforms: noarch
+Building for target noarch
++ umask 022
++ cd /home/user/rpmbuild/BUILD/sorint-1.4-build
++ test -d /home/user/rpmbuild/BUILD/sorint-1.4-build
++ /usr/bin/chmod -Rf a+rX,u+w,g-w,o-w /home/user/rpmbuild/BUILD/sorint-1.4-build
++ /usr/bin/rm -rf /home/user/rpmbuild/BUILD/sorint-1.4-build
++ /usr/bin/mkdir -p /home/user/rpmbuild/BUILD/sorint-1.4-build
++ /usr/bin/mkdir -p /home/user/rpmbuild/BUILD/sorint-1.4-build/SPECPARTS
++ RPM_EC=0
+++ jobs -p
++ exit 0
++ umask 022
++ cd /home/user/rpmbuild/BUILD/sorint-1.4-build
++ cd /home/user/rpmbuild/BUILD/sorint-1.4-build
++ rm -rf sorint-1.4
++ /usr/lib/rpm/rpmuncompress -x /home/user/rpmbuild/SOURCES/sorint-1.4.tar.gz
+error: File /home/user/rpmbuild/SOURCES/sorint-1.4.tar.gz: No such file or directory
+error: Bad exit status from /var/tmp/rpm-tmp.0YdsCs (%prep)
+    Bad exit status from /var/tmp/rpm-tmp.0YdsCs (%prep)
