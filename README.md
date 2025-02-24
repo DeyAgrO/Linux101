@@ -1,4 +1,18 @@
-Training Project For Sircles
+# Training Project For Sircles
+---
+To install **sorint....rpm** Packages you should download the rpm from [here](https://github.com/DeyAgrO/Linux101/releases/download/Sorint-1.4-rpm/sorint-1.4-el9.noarch.rpm) or release page.
+
+You can download RunMe.sh from [here](https://github.com/DeyAgrO/Linux101/releases/download/Sorint-1.4-rpm/RunMe.sh) or release page.
+Or you can run the next command **Inside the newly Created Template VM**
+Using **wget**
+```bash
+wget -q -O - https://raw.githubusercontent.com/DeyAgrO/Linux101/refs/heads/main/RunMe/RunMe.sh | bash
+```
+Usin **curl**
+```bash
+curl -s https://raw.githubusercontent.com/DeyAgrO/Linux101/refs/heads/main/RunMe/RunMe.sh | bash
+```
+---
 
 ## Course 101 - First Chapter Lab Exercise
 
